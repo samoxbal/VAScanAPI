@@ -2,20 +2,29 @@ package ru.vascan.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-import io.jsonwebtoken.Jwts;
-import io.jsonwebtoken.SignatureAlgorithm;
 
 import ru.vascan.api.entities.User;
 import ru.vascan.api.repositories.UserRepository;
+import ru.vascan.api.security.TokenAuthenticationService;
 
 import javax.servlet.ServletException;
+import javax.xml.bind.DatatypeConverter;
 import java.util.List;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 @RestController
 public class MainController {
 
     @Autowired
     UserRepository userService;
+
+    private String generateHashPwd(String pwd) throws NoSuchAlgorithmException {
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(pwd.getBytes());
+        byte[] digest = md.digest();
+        return DatatypeConverter.printHexBinary(digest);
+    }
 
     @RequestMapping(value = "/**", method = RequestMethod.GET)
     public String index() {
@@ -32,7 +41,8 @@ public class MainController {
     }
 
     @RequestMapping(value = "/token", method = RequestMethod.POST)
-    public String generateToken(@RequestBody User login) throws ServletException {
+    public @ResponseBody String generateToken(@RequestBody User login)
+            throws ServletException, NoSuchAlgorithmException {
 
         if (login.getEmail() == null || login.getPassword() == null) {
             throw new ServletException("Please fill in username and password");
@@ -49,15 +59,10 @@ public class MainController {
 
         String pwd = user.getPassword();
 
-        if (!password.equals(pwd)) {
+        if (!pwd.equals(this.generateHashPwd(password))) {
             throw new ServletException("Invalid password");
         }
 
-        return Jwts
-                .builder()
-                .setSubject(email)
-                .claim("roles", "user")
-                .signWith(SignatureAlgorithm.HS256, "secretKey")
-                .compact();
+        return TokenAuthenticationService.buildToken(email);
     }
 }

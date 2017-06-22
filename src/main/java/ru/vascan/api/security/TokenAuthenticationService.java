@@ -1,4 +1,4 @@
-package ru.vascan.api.secure;
+package ru.vascan.api.security;
 
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -6,7 +6,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.Authentication;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import static java.util.Collections.emptyList;
 
@@ -15,12 +14,13 @@ public class TokenAuthenticationService {
     static final String TOKEN_PREFIX = "Bearer";
     static final String HEADER_STRING = "Authorization";
 
-    static void addAuthentication(HttpServletResponse res, String username) {
-        String JWT = Jwts.builder()
-                .setSubject(username)
-                .signWith(SignatureAlgorithm.HS512, SECRET)
+    public static String buildToken(String email) {
+        return Jwts
+                .builder()
+                .setSubject(email)
+                .claim("roles", "user")
+                .signWith(SignatureAlgorithm.HS256, SECRET)
                 .compact();
-        res.addHeader(HEADER_STRING, TOKEN_PREFIX + " " + JWT);
     }
 
     static Authentication getAuthentication(HttpServletRequest request) {

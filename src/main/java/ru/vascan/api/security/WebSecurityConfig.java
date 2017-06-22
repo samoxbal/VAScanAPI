@@ -1,4 +1,4 @@
-package ru.vascan.api.secure;
+package ru.vascan.api.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.HttpMethod;
@@ -17,8 +17,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST, "/token").permitAll()
                 .anyRequest().authenticated()
                 .and()
-                .addFilterBefore(new JWTLoginFilter("/token", authenticationManager()),
-                        UsernamePasswordAuthenticationFilter.class)
                 .addFilterBefore(new JWTAuthenticationFilter(),
                         UsernamePasswordAuthenticationFilter.class);
     }

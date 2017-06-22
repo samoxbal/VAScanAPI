@@ -1,4 +1,4 @@
-package ru.vascan.api.secure;
+package ru.vascan.api.security;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.GenericFilterBean;
