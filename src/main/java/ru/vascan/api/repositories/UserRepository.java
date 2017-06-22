@@ -6,5 +6,6 @@ import ru.vascan.api.entities.User;
 import java.util.List;
 
 public interface UserRepository extends MongoRepository<User, String> {
-    public List<User> findByEmail(String email);
+    public User findByEmail(String email);
+    public List<User> findAllByEmail(String email);
 }
