@@ -23,7 +23,9 @@ public class MainController {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(pwd.getBytes());
         byte[] digest = md.digest();
-        return DatatypeConverter.printHexBinary(digest);
+        return DatatypeConverter
+                .printHexBinary(digest)
+                .toLowerCase();
     }
 
     @RequestMapping(value = "/**", method = RequestMethod.GET)
@@ -32,16 +34,11 @@ public class MainController {
     }
 
     @RequestMapping(
-        value = "/users",
-        method = RequestMethod.GET,
+        value = "/token",
+        method = RequestMethod.POST,
         produces = "application/json"
     )
-    public List<User> getUsers(@RequestParam String email) {
-        return userService.findAllByEmail(email);
-    }
-
-    @RequestMapping(value = "/token", method = RequestMethod.POST)
-    public @ResponseBody String generateToken(@RequestBody User login)
+    public String generateToken(@RequestBody User login)
             throws ServletException, NoSuchAlgorithmException {
 
         if (login.getEmail() == null || login.getPassword() == null) {
