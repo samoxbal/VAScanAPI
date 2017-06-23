@@ -9,7 +9,6 @@ import ru.vascan.api.security.TokenAuthenticationService;
 
 import javax.servlet.ServletException;
 import javax.xml.bind.DatatypeConverter;
-import java.util.List;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
