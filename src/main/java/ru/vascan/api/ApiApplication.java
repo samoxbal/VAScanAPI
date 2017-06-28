@@ -11,12 +11,20 @@ import graphql.servlet.SimpleGraphQLServlet;
 import org.springframework.context.annotation.Bean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
+import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.boot.builder.SpringApplicationBuilder;
 import ru.vascan.api.entities.Experiment;
 
 import java.util.List;
 
 @SpringBootApplication
-public class ApiApplication {
+public class ApiApplication extends SpringBootServletInitializer {
+
+    @Override
+    protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
+        return application.sources(ApiApplication.class);
+    }
+
 	public static void main(String[] args) {
 		SpringApplication.run(ApiApplication.class, args);
 	}
@@ -28,7 +36,7 @@ public class ApiApplication {
     public GraphQLSchema graphQLSchema() {
 	    return SchemaParser
                 .newParser()
-                .file("Experiment.graphqls")
+                .file("Query.graphqls")
                 .resolvers(resolvers)
                 .dictionary(Experiment.class)
                 .build()

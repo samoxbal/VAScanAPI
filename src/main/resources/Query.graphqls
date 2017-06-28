@@ -1,3 +1,7 @@
+type Query {
+    experiments(user: String): [Experiment]
+}
+
 type Experiment {
     id: String,
     user: String,
@@ -5,6 +9,4 @@ type Experiment {
     description: String,
     startDate: String,
     endDate: String
-
-    variables: [id]
 }
