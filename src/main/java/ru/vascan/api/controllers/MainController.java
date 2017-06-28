@@ -59,6 +59,6 @@ public class MainController {
             throw new ServletException("Invalid password");
         }
 
-        return TokenAuthenticationService.buildToken(email);
+        return TokenAuthenticationService.buildToken(user.getId());
     }
 }

@@ -14,23 +14,27 @@ public class TokenAuthenticationService {
     static final String TOKEN_PREFIX = "Bearer";
     static final String HEADER_STRING = "Authorization";
 
-    public static String buildToken(String email) {
+    public static String buildToken(String userId) {
         return Jwts
                 .builder()
-                .setSubject(email)
+                .setSubject(userId)
                 .claim("roles", "user")
                 .signWith(SignatureAlgorithm.HS256, SECRET)
                 .compact();
     }
 
+    private static String getUserFromToken(String token) {
+        return Jwts.parser()
+                .setSigningKey(SECRET)
+                .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
+                .getBody()
+                .getSubject();
+    }
+
     static Authentication getAuthentication(HttpServletRequest request) {
         String token = request.getHeader(HEADER_STRING);
         if (token != null) {
-            String user = Jwts.parser()
-                    .setSigningKey(SECRET)
-                    .parseClaimsJws(token.replace(TOKEN_PREFIX, ""))
-                    .getBody()
-                    .getSubject();
+            String user = TokenAuthenticationService.getUserFromToken(token);
 
             return user != null ?
                     new UsernamePasswordAuthenticationToken(user, null, emptyList()) :

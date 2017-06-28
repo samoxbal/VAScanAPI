@@ -8,6 +8,7 @@ import lombok.Getter;
 public class User {
 
     @Id
+    @Getter
     public String id;
 
     @Getter
