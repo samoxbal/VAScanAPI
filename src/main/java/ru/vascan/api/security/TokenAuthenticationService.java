@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import static java.util.Collections.emptyList;
 
 public class TokenAuthenticationService {
-    static final String SECRET = "ThisIsASecret";
-    static final String TOKEN_PREFIX = "Bearer";
+    static final String SECRET = "secret";
+    static final String TOKEN_PREFIX = "JWT";
     static final String HEADER_STRING = "Authorization";
 
     public static String buildToken(String email) {

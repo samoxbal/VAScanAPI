@@ -27,11 +27,6 @@ public class MainController {
                 .toLowerCase();
     }
 
-    @RequestMapping(value = "/**", method = RequestMethod.GET)
-    public String index() {
-        return "index";
-    }
-
     @RequestMapping(
         value = "/token",
         method = RequestMethod.POST,
