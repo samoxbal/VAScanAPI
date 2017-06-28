@@ -1,0 +1,10 @@
+type Experiment {
+    id: String,
+    user: String,
+    name: String,
+    description: String,
+    startDate: String,
+    endDate: String
+
+    variables: [id]
+}
