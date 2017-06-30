@@ -27,11 +27,8 @@ public class MainController {
                 .toLowerCase();
     }
 
-    @RequestMapping(
-        value = "/token",
-        method = RequestMethod.POST,
-        produces = "application/json"
-    )
+    @RequestMapping(value = "/token", method = RequestMethod.POST)
+    @ResponseBody
     public String generateToken(@RequestBody User login)
             throws ServletException, NoSuchAlgorithmException {
 

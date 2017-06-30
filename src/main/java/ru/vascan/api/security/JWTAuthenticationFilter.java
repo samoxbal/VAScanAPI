@@ -2,15 +2,13 @@ package ru.vascan.api.security;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.Authentication;
+import org.springframework.web.filter.GenericFilterBean;
 
 import javax.servlet.*;
 import javax.servlet.http.HttpServletRequest;
 import java.io.IOException;
 
-public class JWTAuthenticationFilter implements Filter {
-
-    @Override
-    public void init(FilterConfig config) throws ServletException {}
+public class JWTAuthenticationFilter extends GenericFilterBean {
 
     @Override
     public void doFilter(ServletRequest request,
@@ -24,7 +22,4 @@ public class JWTAuthenticationFilter implements Filter {
                 .setAuthentication(authentication);
         filterChain.doFilter(request,response);
     }
-
-    @Override
-    public void destroy() {}
 }

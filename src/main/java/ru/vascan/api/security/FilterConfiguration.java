@@ -1,26 +1,24 @@
 package ru.vascan.api.security;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
-import org.springframework.context.annotation.Bean;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.http.HttpMethod;
 
 @Configuration
-public class FilterConfiguration {
+@EnableWebSecurity
+public class FilterConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Bean
-    public FilterRegistrationBean JWTFilterRegistration() {
-        FilterRegistrationBean registration = new FilterRegistrationBean();
-        JWTAuthenticationFilter jwtAuthenticationFilter = new JWTAuthenticationFilter();
-        registration.setFilter(jwtAuthenticationFilter);
-        List<String> urlPatters = new ArrayList<>();
-        Collections.addAll(urlPatters, "/graphql");
-        registration.setUrlPatterns(urlPatters);
-        registration.setName("JWT-Auth");
-        registration.setOrder(1);
-        return registration;
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable().authorizeRequests()
+                .antMatchers("/").permitAll()
+                .antMatchers(HttpMethod.POST, "/token").permitAll()
+                .anyRequest().authenticated()
+                .and()
+                .addFilterBefore(new JWTAuthenticationFilter(),
+                        UsernamePasswordAuthenticationFilter.class);
     }
 }
