@@ -50,6 +50,6 @@ public class ApiApplication extends SpringBootServletInitializer {
 
     @Bean
     ServletRegistrationBean graphQLServletRegistrationBean(GraphQLSchema schema, ExecutionStrategy executionStrategy) {
-        return new ServletRegistrationBean(new SimpleGraphQLServlet(schema, executionStrategy), "/");
+        return new ServletRegistrationBean(new SimpleGraphQLServlet(schema, executionStrategy), "/graphql");
     }
 }
