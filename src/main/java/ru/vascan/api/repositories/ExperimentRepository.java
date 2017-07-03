@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ExperimentRepository extends MongoRepository<Experiment, String> {
     List<Experiment> findByUser(String user);
+    Experiment createExperiment(Experiment experiment);
 }

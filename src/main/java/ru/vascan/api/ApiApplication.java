@@ -36,7 +36,7 @@ public class ApiApplication extends SpringBootServletInitializer {
     public GraphQLSchema graphQLSchema() {
 	    return SchemaParser
                 .newParser()
-                .file("Query.graphqls")
+                .file("Schema.graphqls")
                 .resolvers(resolvers)
                 .dictionary(Experiment.class)
                 .build()
