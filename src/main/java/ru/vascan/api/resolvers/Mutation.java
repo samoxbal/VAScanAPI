@@ -16,6 +16,7 @@ public class Mutation implements GraphQLRootResolver {
             String user, String name, String description, String startDate, String endDate
     )
     {
-
+        Experiment experimentObj = new Experiment(user, name, description, startDate, endDate);
+        return experimentService.save(experimentObj);
     }
 }
