@@ -4,6 +4,7 @@ import com.coxautodev.graphql.tools.GraphQLRootResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.vascan.api.entities.Experiment;
+import ru.vascan.api.entities.Voltamogramm;
 import ru.vascan.api.repositories.ExperimentRepository;
 import ru.vascan.api.repositories.VoltamogrammRepository;
 
