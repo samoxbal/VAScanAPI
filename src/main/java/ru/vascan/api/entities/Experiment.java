@@ -3,6 +3,7 @@ package ru.vascan.api.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 
@@ -19,18 +20,22 @@ public class Experiment {
     private String user;
 
     @Getter
+    @Setter
     @NonNull
     private String name;
 
     @Getter
+    @Setter
     @NonNull
     private String description;
 
     @Getter
+    @Setter
     @NonNull
     private String startDate;
 
     @Getter
+    @Setter
     @NonNull
     private String endDate;
 }

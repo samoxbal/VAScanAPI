@@ -14,6 +14,7 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import ru.vascan.api.entities.Experiment;
+import ru.vascan.api.entities.Voltamogramm;
 
 import java.util.List;
 
@@ -38,7 +39,10 @@ public class ApiApplication extends SpringBootServletInitializer {
                 .newParser()
                 .file("Schema.graphqls")
                 .resolvers(resolvers)
-                .dictionary(Experiment.class)
+                .dictionary(
+                    Experiment.class,
+                    Voltamogramm.class
+                )
                 .build()
                 .makeExecutableSchema();
     }
