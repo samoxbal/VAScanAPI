@@ -3,8 +3,11 @@ package ru.vascan.api.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Getter;
+import lombok.Setter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+
+import java.util.List;
 
 @Document(collection = "voltamogramms")
 @RequiredArgsConstructor
@@ -39,4 +42,8 @@ public class Voltamogramm {
 
     @Getter
     private String equipmentId;
+
+    @Getter
+    @Setter
+    private List<Scan> scans;
 }

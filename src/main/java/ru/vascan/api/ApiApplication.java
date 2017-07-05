@@ -15,6 +15,7 @@ import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import ru.vascan.api.entities.Experiment;
 import ru.vascan.api.entities.Voltamogramm;
+import ru.vascan.api.entities.Scan;
 
 import java.util.List;
 
@@ -41,7 +42,8 @@ public class ApiApplication extends SpringBootServletInitializer {
                 .resolvers(resolvers)
                 .dictionary(
                     Experiment.class,
-                    Voltamogramm.class
+                    Voltamogramm.class,
+                    Scan.class
                 )
                 .build()
                 .makeExecutableSchema();

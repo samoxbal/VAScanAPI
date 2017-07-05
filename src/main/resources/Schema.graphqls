@@ -1,5 +1,6 @@
 type Query {
     experiments(user: String): [Experiment]
+    voltamogramm(voltamogrammId: String): Voltamogramm
 }
 
 type Mutation {
@@ -37,5 +38,20 @@ type Voltamogramm {
     description: String,
     solution: String,
     numberOfElectrodes: Int,
-    equipmentId: String
+    equipmentId: String,
+    scans: [Scan]
+}
+
+type Scan {
+    id: String,
+    voltamogramm: String,
+    startPotential: Float,
+    endPotential: Float,
+    reverseDirection: Boolean,
+    stirring: Boolean,
+    rotation: Boolean,
+    channelId: String,
+    channelLabel: String,
+    temperature: Float,
+    pressure: Float
 }
