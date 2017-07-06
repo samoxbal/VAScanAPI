@@ -16,7 +16,7 @@ import java.security.NoSuchAlgorithmException;
 public class MainController {
 
     @Autowired
-    UserRepository userService;
+    private UserRepository userService;
 
     private String generateHashPwd(String pwd) throws NoSuchAlgorithmException {
         MessageDigest md = MessageDigest.getInstance("MD5");
@@ -27,9 +27,8 @@ public class MainController {
                 .toLowerCase();
     }
 
-    @RequestMapping(value = "/token", method = RequestMethod.POST)
-    @ResponseBody
-    public String generateToken(@RequestBody User login)
+    @RequestMapping(value = "/token", method = RequestMethod.POST, produces = "application/json")
+    public TokenResponse generateToken(@RequestBody User login)
             throws ServletException, NoSuchAlgorithmException {
 
         if (login.getEmail() == null || login.getPassword() == null) {
@@ -51,6 +50,14 @@ public class MainController {
             throw new ServletException("Invalid password");
         }
 
-        return TokenAuthenticationService.buildToken(user.getId());
+        return new TokenResponse(TokenAuthenticationService.buildToken(user.getId()));
+    }
+
+    private class TokenResponse {
+        public String data;
+
+        private TokenResponse(String token) {
+            this.data = token;
+        }
     }
 }
