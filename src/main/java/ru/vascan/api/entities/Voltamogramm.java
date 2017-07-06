@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.List;
 
@@ -35,18 +37,18 @@ public class Voltamogramm {
     private String id;
 
     @Getter
-    @NonNull
+    @NotBlank
     private String experiment;
 
     @Getter
-    @NonNull
+    @NotNull
     private Boolean cyclic;
 
     @Getter
     private String date;
 
     @Getter
-    @NonNull
+    @NotBlank
     private String description;
 
     @Getter
@@ -54,7 +56,7 @@ public class Voltamogramm {
     private String solution;
 
     @Getter
-    @NonNull
+    @NotNull
     private Integer numberOfElectrodes;
 
     @Getter
