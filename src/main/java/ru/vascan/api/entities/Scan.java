@@ -3,11 +3,10 @@ package ru.vascan.api.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Getter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
+import javax.validation.constraints.NotNull;
+import org.hibernate.validator.constraints.NotBlank;
 
 @Document(collection = "scans")
-@RequiredArgsConstructor
 public class Scan {
 
     @Id
@@ -15,18 +14,18 @@ public class Scan {
     private String id;
 
     @Getter
-    @NonNull
+    @NotBlank
     private String voltamogramm;
 
     @Getter
     private String date;
 
     @Getter
-    @NonNull
+    @NotNull
     private Float startPotential;
 
     @Getter
-    @NonNull
+    @NotNull
     private Float endPotential;
 
     @Getter
@@ -45,10 +44,10 @@ public class Scan {
     private String channelLabel;
 
     @Getter
-    @NonNull
+    @NotNull
     private Float temperature;
 
     @Getter
-    @NonNull
+    @NotNull
     private Float pressure;
 }

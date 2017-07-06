@@ -4,15 +4,12 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Getter;
 import lombok.Setter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
 
 import java.util.List;
 
 @Document(collection = "voltamogramms")
-@RequiredArgsConstructor
 public class Voltamogramm {
 
     public Voltamogramm(String experiment,
@@ -52,7 +49,7 @@ public class Voltamogramm {
     private String description;
 
     @Getter
-    @NonNull
+    @NotBlank
     private String solution;
 
     @Getter
