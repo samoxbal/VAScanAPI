@@ -4,13 +4,18 @@ import com.coxautodev.graphql.tools.GraphQLRootResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.vascan.api.entities.Experiment;
+import ru.vascan.api.entities.Voltamogramm;
 import ru.vascan.api.repositories.ExperimentRepository;
+import ru.vascan.api.repositories.VoltamogrammRepository;
 
 @Component
 public class Mutation implements GraphQLRootResolver {
 
     @Autowired
     private ExperimentRepository experimentService;
+
+    @Autowired
+    private VoltamogrammRepository voltamogrammService;
 
     public Experiment createExperiment(
         String user, String name, String description, String startDate, String endDate
@@ -31,5 +36,21 @@ public class Mutation implements GraphQLRootResolver {
         experiment.setEndDate(endDate);
         experimentService.save(experiment);
         return experimentService.findById(id);
+    }
+
+    public Voltamogramm createVoltamogramm(
+        String experiment,
+        Boolean cyclic,
+        String date,
+        String description,
+        String solution,
+        Integer numberOfElectrodes,
+        String equipmentId
+    )
+    {
+        Voltamogramm voltamogrammObj = new Voltamogramm(
+            experiment, cyclic, date, description, solution, numberOfElectrodes, equipmentId
+        );
+        return voltamogrammService.save(voltamogrammObj);
     }
 }

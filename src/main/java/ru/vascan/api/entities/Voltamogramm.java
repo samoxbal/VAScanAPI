@@ -13,6 +13,23 @@ import java.util.List;
 @RequiredArgsConstructor
 public class Voltamogramm {
 
+    public Voltamogramm(String experiment,
+                        Boolean cyclic,
+                        String date,
+                        String description,
+                        String solution,
+                        Integer numberOfElectrodes,
+                        String equipmentId)
+    {
+        this.experiment = experiment;
+        this.cyclic = cyclic;
+        this.date = date;
+        this.description = description;
+        this.solution = solution;
+        this.numberOfElectrodes = numberOfElectrodes;
+        this.equipmentId = equipmentId;
+    }
+
     @Id
     @Getter
     private String id;

@@ -19,6 +19,16 @@ type Mutation {
         startDate: String,
         endDate: String
     ): Experiment
+
+    createVoltamogramm(
+        experiment: String,
+        cyclic: Boolean,
+        date: String,
+        description: String,
+        solution: String,
+        numberOfElectrodes: Int,
+        equipmentId: String
+    ): Voltamogramm
 }
 
 type Experiment {
