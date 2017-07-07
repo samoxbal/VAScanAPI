@@ -50,4 +50,8 @@ public class Scan {
     @Getter
     @NotNull
     private Float pressure;
+
+    @Getter
+    @NotNull
+    private String measureMode;
 }

@@ -28,6 +28,10 @@ public class Query implements GraphQLRootResolver {
         return experimentService.findByUser(user);
     }
 
+    public List<Voltamogramm> voltamogramms(String experiment) {
+        return voltamogrammService.findByExperiment(experiment);
+    }
+
     public Voltamogramm voltamogramm(String voltamogrammId) {
         List<Scan> scans = scanService.findByVoltamogramm(voltamogrammId);
         Voltamogramm voltamogramm = voltamogrammService.findById(voltamogrammId);

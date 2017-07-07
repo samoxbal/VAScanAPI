@@ -1,5 +1,6 @@
 type Query {
     experiments(user: String): [Experiment]
+    voltamogramms(experiment: String): [Voltamogramm]
     voltamogramm(voltamogrammId: String): Voltamogramm
 }
 
