@@ -32,4 +32,5 @@ dependencies {
 	compile('org.hibernate:hibernate-validator:5.3.4.Final')
 	runtime('org.springframework.boot:spring-boot-devtools')
 	testCompile('org.springframework.boot:spring-boot-starter-test')
+	testCompile('de.flapdoodle.embed:de.flapdoodle.embed.mongo:2.0.0')
 }
