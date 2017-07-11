@@ -64,5 +64,7 @@ type Scan {
     channelId: String,
     channelLabel: String,
     temperature: Float,
-    pressure: Float
+    pressure: Float,
+    measureMode: String
 }
+
