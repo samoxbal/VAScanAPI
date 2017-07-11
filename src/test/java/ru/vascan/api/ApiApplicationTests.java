@@ -3,7 +3,6 @@ package ru.vascan.api;
 import org.junit.Test;
 import org.junit.Before;
 import org.junit.runner.RunWith;
-import org.springframework.http.MediaType;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -12,6 +11,7 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApiApplication.class)
@@ -31,7 +31,9 @@ public class ApiApplicationTests {
 	}
 
 	@Test
-	public void testExperimentsQuery() {
-
+	public void testTokenQueryWithoutBody() throws Exception {
+		mockMvc
+			.perform(MockMvcRequestBuilders.post("/token/"))
+			.andExpect(status().is(400));
 	}
 }
