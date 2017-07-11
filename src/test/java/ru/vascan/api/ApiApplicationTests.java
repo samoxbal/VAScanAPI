@@ -36,7 +36,8 @@ public class ApiApplicationTests {
         this.mockMvc = MockMvcBuilders
 				.webAppContextSetup(wac)
 				.build();
-        User mockUser = new User("123", "7805382@mail.ru", "gfhjkm");
+        userService.deleteAll();
+        User mockUser = new User("123", "7805382@mail.ru", "d9d1b168eac8f197e0576b56cfc23ece");
         userService.save(mockUser);
 	}
 

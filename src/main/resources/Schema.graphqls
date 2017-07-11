@@ -30,6 +30,21 @@ type Mutation {
         numberOfElectrodes: Int,
         equipmentId: String
     ): Voltamogramm
+
+    createScan(
+        voltamogramm: String,
+        date: String,
+        startPotential: Float,
+        endPotential: Float,
+        reverseDirection: Boolean,
+        stirring: Boolean,
+        rotation: Boolean,
+        channelId: String,
+        channelLabel: String,
+        temperature: Float,
+        pressure: Float,
+        measureMode: String
+    ): Scan
 }
 
 type Experiment {
@@ -67,4 +82,3 @@ type Scan {
     pressure: Float,
     measureMode: String
 }
-
