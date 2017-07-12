@@ -2,6 +2,8 @@ type Query {
     experiments(user: String): [Experiment]
     voltamogramms(experiment: String): [Voltamogramm]
     voltamogramm(voltamogrammId: String): Voltamogramm
+    measures(scan: String): [Measure]
+    measure(measureId: String): Measure
 }
 
 type Mutation {
@@ -81,4 +83,10 @@ type Scan {
     temperature: Float,
     pressure: Float,
     measureMode: String
+}
+
+type Measure {
+    id: String,
+    scan: String,
+    points: [[Float]]
 }

@@ -4,11 +4,13 @@ import com.coxautodev.graphql.tools.GraphQLRootResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.vascan.api.entities.Experiment;
+import ru.vascan.api.entities.Measure;
 import ru.vascan.api.entities.Voltamogramm;
 import ru.vascan.api.entities.Scan;
 import ru.vascan.api.repositories.ExperimentRepository;
 import ru.vascan.api.repositories.VoltamogrammRepository;
 import ru.vascan.api.repositories.ScanRepository;
+import ru.vascan.api.repositories.MeasureRepository;
 
 import java.util.List;
 
@@ -24,6 +26,9 @@ public class Query implements GraphQLRootResolver {
     @Autowired
     private ScanRepository scanService;
 
+    @Autowired
+    private MeasureRepository measureService;
+
     public List<Experiment> experiments(String user) {
         return experimentService.findByUser(user);
     }
@@ -37,5 +42,13 @@ public class Query implements GraphQLRootResolver {
         Voltamogramm voltamogramm = voltamogrammService.findById(voltamogrammId);
         voltamogramm.setScans(scans);
         return voltamogramm;
+    }
+
+    public List<Measure> measures(String scan) {
+        return measureService.findByScan(scan);
+    }
+
+    public Measure measure(String id) {
+        return measureService.findById(id);
     }
 }
