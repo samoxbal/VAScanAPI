@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import ru.vascan.api.entities.User;
+import ru.vascan.api.entities.ResponseData;
 import ru.vascan.api.repositories.UserRepository;
 import ru.vascan.api.security.TokenAuthenticationService;
 
@@ -28,7 +29,7 @@ public class MainController {
     }
 
     @RequestMapping(value = "/token", method = RequestMethod.POST, produces = "application/json")
-    public TokenResponse generateToken(@RequestBody User login)
+    public ResponseData generateToken(@RequestBody User login)
             throws ServletException, NoSuchAlgorithmException {
 
         if (login.getEmail() == null || login.getPassword() == null) {
@@ -50,14 +51,6 @@ public class MainController {
             throw new ServletException("Invalid password");
         }
 
-        return new TokenResponse(TokenAuthenticationService.buildToken(user.getId()));
-    }
-
-    private class TokenResponse {
-        public String data;
-
-        private TokenResponse(String token) {
-            this.data = token;
-        }
+        return new ResponseData(TokenAuthenticationService.buildToken(user.getId()));
     }
 }

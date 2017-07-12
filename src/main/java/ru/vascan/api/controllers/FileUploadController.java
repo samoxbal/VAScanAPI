@@ -3,9 +3,11 @@ package ru.vascan.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
 import ru.vascan.api.entities.Measure;
+import ru.vascan.api.entities.ResponseData;
 import ru.vascan.api.repositories.MeasureRepository;
 
 import javax.servlet.ServletException;
@@ -24,9 +26,9 @@ public class FileUploadController {
     @Autowired
     private MeasureRepository measureService;
 
-    @PostMapping("/upload")
-    public String uploadScanData(
-        @RequestParam("scan") String scan,
+    @PostMapping(value = "/upload", produces = "application/json")
+    public ResponseData uploadScanData(
+        @RequestPart("scan") String scan,
         @RequestParam("file") MultipartFile file
     ) throws ServletException, IOException
     {
@@ -52,6 +54,6 @@ public class FileUploadController {
         Measure measureObj = new Measure(scan, pointsData);
         Measure measureSaved = measureService.save(measureObj);
 
-        return measureSaved.getId();
+        return new ResponseData(measureSaved.getId());
     }
 }
