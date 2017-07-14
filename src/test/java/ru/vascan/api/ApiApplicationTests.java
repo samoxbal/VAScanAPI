@@ -16,7 +16,7 @@ import org.springframework.web.context.WebApplicationContext;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import ru.vascan.api.repositories.UserRepository;
-import ru.vascan.api.entities.User;
+import ru.vascan.api.dao.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(classes = ApiApplication.class)

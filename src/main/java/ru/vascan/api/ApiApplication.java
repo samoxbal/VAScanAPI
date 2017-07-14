@@ -13,9 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.boot.builder.SpringApplicationBuilder;
-import ru.vascan.api.entities.Experiment;
-import ru.vascan.api.entities.Voltamogramm;
-import ru.vascan.api.entities.Scan;
+import ru.vascan.api.dao.Experiment;
+import ru.vascan.api.dao.Voltamogramm;
+import ru.vascan.api.dao.Scan;
+import ru.vascan.api.entities.CreateExperimentInput;
 
 import java.util.List;
 
@@ -43,7 +44,8 @@ public class ApiApplication extends SpringBootServletInitializer {
                 .dictionary(
                     Experiment.class,
                     Voltamogramm.class,
-                    Scan.class
+                    Scan.class,
+                    CreateExperimentInput.class
                 )
                 .build()
                 .makeExecutableSchema();

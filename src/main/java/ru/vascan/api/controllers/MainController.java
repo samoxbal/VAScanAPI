@@ -3,7 +3,7 @@ package ru.vascan.api.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import ru.vascan.api.entities.User;
+import ru.vascan.api.dao.User;
 import ru.vascan.api.entities.ResponseData;
 import ru.vascan.api.repositories.UserRepository;
 import ru.vascan.api.security.TokenAuthenticationService;
