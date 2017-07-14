@@ -6,7 +6,6 @@ import org.springframework.stereotype.Component;
 import ru.vascan.api.dao.Experiment;
 import ru.vascan.api.dao.Voltamogramm;
 import ru.vascan.api.dao.Scan;
-import ru.vascan.api.entities.CreateExperimentInput;
 import ru.vascan.api.repositories.ExperimentRepository;
 import ru.vascan.api.repositories.VoltamogrammRepository;
 import ru.vascan.api.repositories.ScanRepository;
@@ -24,15 +23,19 @@ public class Mutation implements GraphQLRootResolver {
     private ScanRepository scanService;
 
     public Experiment createExperiment(
-        CreateExperimentInput input
+        String user,
+        String name,
+        String description,
+        String startDate,
+        String endDate
     )
     {
         Experiment experimentObj = new Experiment(
-            input.getUser(),
-            input.getName(),
-            input.getDescription(),
-            input.getStartDate(),
-            input.getEndDate()
+            user,
+            name,
+            description,
+            startDate,
+            endDate
         );
         return experimentService.save(experimentObj);
     }
