@@ -16,6 +16,7 @@ import org.springframework.boot.builder.SpringApplicationBuilder;
 import ru.vascan.api.dao.Experiment;
 import ru.vascan.api.dao.Voltamogramm;
 import ru.vascan.api.dao.Scan;
+import ru.vascan.api.dao.Measure;
 
 import java.util.List;
 
@@ -43,7 +44,8 @@ public class ApiApplication extends SpringBootServletInitializer {
                 .dictionary(
                     Experiment.class,
                     Voltamogramm.class,
-                    Scan.class
+                    Scan.class,
+                    Measure.class
                 )
                 .build()
                 .makeExecutableSchema();
