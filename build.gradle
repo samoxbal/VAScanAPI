@@ -10,11 +10,13 @@ buildscript {
 	}
 }
 
+apply plugin: 'application'
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = 1.8
+mainClassName = 'ru.vascan.api.ApiApplication'
 
 repositories {
 	jcenter()
