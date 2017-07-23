@@ -41,12 +41,12 @@ public class FileUploadController {
         BufferedReader buffer = new BufferedReader(fileStreamReader);
         Stream<String> lines = buffer.lines();
 
-        List<List<Float>> pointsData = lines
+        List<List<Double>> pointsData = lines
                 .map(line -> {
                     String[] parts = line.split("\\s+");
-                    List<Float> points = new ArrayList<>();
-                    points.add(Float.valueOf(parts[0]));
-                    points.add(Float.valueOf(parts[1]));
+                    List<Double> points = new ArrayList<>();
+                    points.add(Double.valueOf(parts[0]));
+                    points.add(Double.valueOf(parts[1]));
                     return points;
                 })
                 .collect(Collectors.toList());

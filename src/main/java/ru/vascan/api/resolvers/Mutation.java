@@ -72,15 +72,15 @@ public class Mutation implements GraphQLRootResolver {
     public Scan createScan(
         String voltamogramm,
         String date,
-        Float startPotential,
-        Float endPotential,
+        Double startPotential,
+        Double endPotential,
         Boolean reverseDirection,
         Boolean stirring,
         Boolean rotation,
         String channelId,
         String channelLabel,
-        Float temperature,
-        Float pressure,
+        Double temperature,
+        Double pressure,
         String measureMode
     )
     {

@@ -12,15 +12,15 @@ public class Scan {
     public Scan(
         String voltamogramm,
         String date,
-        Float startPotential,
-        Float endPotential,
+        Double startPotential,
+        Double endPotential,
         Boolean reverseDirection,
         Boolean stirring,
         Boolean rotation,
         String channelId,
         String channelLabel,
-        Float temperature,
-        Float pressure,
+        Double temperature,
+        Double pressure,
         String measureMode
     )
     {
@@ -51,11 +51,11 @@ public class Scan {
 
     @Getter
     @NotNull
-    private Float startPotential;
+    private Double startPotential;
 
     @Getter
     @NotNull
-    private Float endPotential;
+    private Double endPotential;
 
     @Getter
     private Boolean reverseDirection;
@@ -74,11 +74,11 @@ public class Scan {
 
     @Getter
     @NotNull
-    private Float temperature;
+    private Double temperature;
 
     @Getter
     @NotNull
-    private Float pressure;
+    private Double pressure;
 
     @Getter
     @NotNull

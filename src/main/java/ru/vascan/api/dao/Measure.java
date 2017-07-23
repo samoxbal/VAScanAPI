@@ -22,5 +22,5 @@ public class Measure {
 
     @Getter
     @NonNull
-    private List<List<Float>> points;
+    private List<List<Double>> points;
 }
