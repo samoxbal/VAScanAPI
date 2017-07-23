@@ -1,10 +1,13 @@
 package ru.vascan.api.dao;
 
+import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import lombok.Getter;
 import javax.validation.constraints.NotNull;
 import org.hibernate.validator.constraints.NotBlank;
+
+import java.util.List;
 
 @Document(collection = "scans")
 public class Scan {
@@ -83,4 +86,8 @@ public class Scan {
     @Getter
     @NotNull
     private String measureMode;
+
+    @Getter
+    @Setter
+    private List<Measure> measures;
 }

@@ -51,4 +51,11 @@ public class Query implements GraphQLRootResolver {
     public Measure measure(String id) {
         return measureService.findById(id);
     }
+
+    public Scan scan(String scanId) {
+        List<Measure> measures = this.measures(scanId);
+        Scan scan = scanService.findById(scanId);
+        scan.setMeasures(measures);
+        return scan;
+    }
 }

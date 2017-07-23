@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface ScanRepository extends MongoRepository<Scan, String> {
     List<Scan> findByVoltamogramm(String voltamogrammId);
+    Scan findById(String scanId);
 }
