@@ -1,21 +1,17 @@
 package ru.vascan.api.dao;
 
+import lombok.Data;
+import lombok.experimental.Accessors;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import lombok.Getter;
-import lombok.AllArgsConstructor;
 
 @Document(collection = "users")
-@AllArgsConstructor
+@Data
+@Accessors(chain = true)
 public class User {
 
     @Id
-    @Getter
     public String id;
-
-    @Getter
     private String email;
-
-    @Getter
     private String password;
 }

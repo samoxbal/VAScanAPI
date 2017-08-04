@@ -37,7 +37,10 @@ public class ApiApplicationTests {
 				.webAppContextSetup(wac)
 				.build();
         userService.deleteAll();
-        User mockUser = new User("123", "7805382@mail.ru", "d9d1b168eac8f197e0576b56cfc23ece");
+        User mockUser = new User()
+				.setId("123")
+				.setEmail("7805382@mail.ru")
+				.setPassword("d9d1b168eac8f197e0576b56cfc23ece");
         userService.save(mockUser);
 	}
 
