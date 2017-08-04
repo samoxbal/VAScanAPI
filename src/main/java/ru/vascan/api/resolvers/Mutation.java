@@ -44,12 +44,12 @@ public class Mutation implements GraphQLRootResolver {
     )
     {
         Experiment experiment = experimentService
-            .findById(id)
-            .setName(name)
-            .setDescription(description)
-            .setStartDate(startDate)
-            .setEndDate(endDate);
-        experimentService.save(experiment);
+                .findById(id)
+                .setName(name)
+                .setDescription(description)
+                .setStartDate(startDate)
+                .setEndDate(endDate);
+            experimentService.save(experiment);
         return experimentService.findById(id);
     }
 
@@ -89,20 +89,19 @@ public class Mutation implements GraphQLRootResolver {
         String measureMode
     )
     {
-        Scan scanObj = new Scan(
-            voltamogramm,
-            date,
-            startPotential,
-            endPotential,
-            reverseDirection,
-            stirring,
-            rotation,
-            channelId,
-            channelLabel,
-            temperature,
-            pressure,
-            measureMode
-        );
+        Scan scanObj = new Scan()
+                .setVoltamogramm(voltamogramm)
+                .setDate(date)
+                .setStartPotential(startPotential)
+                .setEndPotential(endPotential)
+                .setReverseDirection(reverseDirection)
+                .setStirring(stirring)
+                .setRotation(rotation)
+                .setChannelId(channelId)
+                .setChannelLabel(channelLabel)
+                .setTemperature(temperature)
+                .setPressure(pressure)
+                .setMeasureMode(measureMode);
         return scanService.save(scanObj);
     }
 }
