@@ -1,41 +1,31 @@
 package ru.vascan.api.dao;
 
+import lombok.Data;
+import lombok.experimental.Accessors;
+import org.hibernate.validator.constraints.NotBlank;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 
 @Document(collection = "experiments")
-@RequiredArgsConstructor
+@Data
+@Accessors(chain = true)
 public class Experiment {
 
     @Id
-    @Getter
     private String id;
 
-    @Getter
-    @NonNull
+    @NotBlank
     private String user;
 
-    @Getter
-    @Setter
-    @NonNull
+    @NotBlank
     private String name;
 
-    @Getter
-    @Setter
-    @NonNull
+    @NotBlank
     private String description;
 
-    @Getter
-    @Setter
-    @NonNull
+    @NotBlank
     private String startDate;
 
-    @Getter
-    @Setter
-    @NonNull
+    @NotBlank
     private String endDate;
 }

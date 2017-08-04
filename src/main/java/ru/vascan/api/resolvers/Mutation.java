@@ -30,13 +30,12 @@ public class Mutation implements GraphQLRootResolver {
         String endDate
     )
     {
-        Experiment experimentObj = new Experiment(
-            user,
-            name,
-            description,
-            startDate,
-            endDate
-        );
+        Experiment experimentObj = new Experiment()
+                .setUser(user)
+                .setName(name)
+                .setDescription(description)
+                .setStartDate(startDate)
+                .setEndDate(endDate);
         return experimentService.save(experimentObj);
     }
 
@@ -44,11 +43,12 @@ public class Mutation implements GraphQLRootResolver {
         String id, String name, String description, String startDate, String endDate
     )
     {
-        Experiment experiment = experimentService.findById(id);
-        experiment.setName(name);
-        experiment.setDescription(description);
-        experiment.setStartDate(startDate);
-        experiment.setEndDate(endDate);
+        Experiment experiment = experimentService
+            .findById(id)
+            .setName(name)
+            .setDescription(description)
+            .setStartDate(startDate)
+            .setEndDate(endDate);
         experimentService.save(experiment);
         return experimentService.findById(id);
     }
@@ -63,9 +63,14 @@ public class Mutation implements GraphQLRootResolver {
         String equipmentId
     )
     {
-        Voltamogramm voltamogrammObj = new Voltamogramm(
-            experiment, cyclic, date, description, solution, numberOfElectrodes, equipmentId
-        );
+        Voltamogramm voltamogrammObj = new Voltamogramm()
+                .setExperiment(experiment)
+                .setCyclic(cyclic)
+                .setDate(date)
+                .setDescription(description)
+                .setSolution(solution)
+                .setNumberOfElectrodes(numberOfElectrodes)
+                .setEquipmentId(equipmentId);
         return voltamogrammService.save(voltamogrammObj);
     }
 
