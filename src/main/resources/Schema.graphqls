@@ -84,11 +84,28 @@ type Scan {
     temperature: Float,
     pressure: Float,
     measureMode: String,
-    measures: [Measure]
+    measures: [Measure],
+    regime: MeasureMode
 }
 
 type Measure {
     id: String,
     scan: String,
     points: [[Float]]
+}
+
+type MeasureMode {
+    scan: String,
+    normalPulseLife: String,
+    normalPulsePeriod: String,
+    differentialPulseAmplitude: String,
+    differentialPulseWidth: String,
+    differentialPulsePeriod: String,
+    squareWaveAmplitude: String,
+    staircaseWaveEstep: String,
+    squareWaveTimePeriod: String,
+    staircaseTimeStep: String,
+    staircaseEstep: String,
+    acAmplitude: String,
+    acFrequency: String
 }

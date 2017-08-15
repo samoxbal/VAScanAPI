@@ -44,4 +44,5 @@ public class Scan {
     private String measureMode;
 
     private List<Measure> measures;
+    private MeasureMode regime;
 }
