@@ -1,4 +1,5 @@
 .idea/*
-VAScanAPI.iml
+*.iml
 .gradle
 build
+out
