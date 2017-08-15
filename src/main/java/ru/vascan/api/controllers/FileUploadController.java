@@ -1,5 +1,6 @@
 package ru.vascan.api.controllers;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +13,6 @@ import ru.vascan.api.repositories.MeasureRepository;
 
 import javax.servlet.ServletException;
 import java.io.BufferedReader;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.stream.Collectors;
@@ -26,11 +26,12 @@ public class FileUploadController {
     @Autowired
     private MeasureRepository measureService;
 
+    @SneakyThrows
     @PostMapping(value = "/upload", produces = "application/json")
     public ResponseData uploadScanData(
         @RequestPart("scan") String scan,
         @RequestParam("file") MultipartFile file
-    ) throws ServletException, IOException
+    )
     {
         if (file.isEmpty()) {
             throw new ServletException("Please upload the file");

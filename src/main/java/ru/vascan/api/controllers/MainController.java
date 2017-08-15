@@ -1,5 +1,6 @@
 package ru.vascan.api.controllers;
 
+import lombok.SneakyThrows;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,7 +12,6 @@ import ru.vascan.api.security.TokenAuthenticationService;
 import javax.servlet.ServletException;
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 @RestController
 public class MainController {
@@ -19,7 +19,8 @@ public class MainController {
     @Autowired
     private UserRepository userService;
 
-    private String generateHashPwd(String pwd) throws NoSuchAlgorithmException {
+    @SneakyThrows
+    private String generateHashPwd(String pwd) {
         MessageDigest md = MessageDigest.getInstance("MD5");
         md.update(pwd.getBytes());
         byte[] digest = md.digest();
@@ -28,9 +29,10 @@ public class MainController {
                 .toLowerCase();
     }
 
+    @SneakyThrows
     @RequestMapping(value = "/token", method = RequestMethod.POST, produces = "application/json")
     public ResponseData generateToken(@RequestBody User login)
-            throws ServletException, NoSuchAlgorithmException {
+    {
 
         if (login.getEmail() == null || login.getPassword() == null) {
             throw new ServletException("Please fill in username and password");
