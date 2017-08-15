@@ -46,7 +46,8 @@ type Mutation {
         channelLabel: String,
         temperature: Float,
         pressure: Float,
-        measureMode: String
+        measureMode: String,
+        regime: MeasureMode
     ): Scan
 }
 

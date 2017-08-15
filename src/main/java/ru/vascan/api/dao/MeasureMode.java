@@ -2,12 +2,17 @@ package ru.vascan.api.dao;
 
 import lombok.Data;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "regimes")
 @Data
 @Accessors(chain = true)
 public class MeasureMode {
+
+    @Id
+    private String id;
+
     private String scan;
     private String normalPulseLife;
     private String normalPulsePeriod;

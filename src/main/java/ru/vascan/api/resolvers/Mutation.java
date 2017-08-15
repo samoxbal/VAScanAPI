@@ -4,6 +4,7 @@ import com.coxautodev.graphql.tools.GraphQLRootResolver;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.vascan.api.dao.Experiment;
+import ru.vascan.api.dao.MeasureMode;
 import ru.vascan.api.dao.Voltamogramm;
 import ru.vascan.api.dao.Scan;
 import ru.vascan.api.repositories.ExperimentRepository;
@@ -86,7 +87,8 @@ public class Mutation implements GraphQLRootResolver {
         String channelLabel,
         Double temperature,
         Double pressure,
-        String measureMode
+        String measureMode,
+        MeasureMode regime
     )
     {
         Scan scanObj = new Scan()
@@ -101,7 +103,8 @@ public class Mutation implements GraphQLRootResolver {
                 .setChannelLabel(channelLabel)
                 .setTemperature(temperature)
                 .setPressure(pressure)
-                .setMeasureMode(measureMode);
+                .setMeasureMode(measureMode)
+                .setRegime(regime);
         return scanService.save(scanObj);
     }
 }
