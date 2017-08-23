@@ -47,7 +47,7 @@ type Mutation {
         temperature: Float,
         pressure: Float,
         measureMode: String,
-        regime: MeasureMode
+        modeInput: MeasureModeInput
     ): Scan
 }
 
@@ -96,6 +96,23 @@ type Measure {
 }
 
 type MeasureMode {
+    id: String,
+    scan: String,
+    normalPulseLife: String,
+    normalPulsePeriod: String,
+    differentialPulseAmplitude: String,
+    differentialPulseWidth: String,
+    differentialPulsePeriod: String,
+    squareWaveAmplitude: String,
+    staircaseWaveEstep: String,
+    squareWaveTimePeriod: String,
+    staircaseTimeStep: String,
+    staircaseEstep: String,
+    acAmplitude: String,
+    acFrequency: String
+}
+
+input MeasureModeInput {
     scan: String,
     normalPulseLife: String,
     normalPulsePeriod: String,

@@ -7,6 +7,7 @@ import ru.vascan.api.dao.Experiment;
 import ru.vascan.api.dao.MeasureMode;
 import ru.vascan.api.dao.Voltamogramm;
 import ru.vascan.api.dao.Scan;
+import ru.vascan.api.entities.MeasureModeInput;
 import ru.vascan.api.repositories.ExperimentRepository;
 import ru.vascan.api.repositories.VoltamogrammRepository;
 import ru.vascan.api.repositories.ScanRepository;
@@ -88,7 +89,7 @@ public class Mutation implements GraphQLRootResolver {
         Double temperature,
         Double pressure,
         String measureMode,
-        MeasureMode regime
+        MeasureModeInput modeInput
     )
     {
         Scan scanObj = new Scan()
@@ -104,7 +105,8 @@ public class Mutation implements GraphQLRootResolver {
                 .setTemperature(temperature)
                 .setPressure(pressure)
                 .setMeasureMode(measureMode)
-                .setRegime(regime);
+                .setRegime(new MeasureMode()
+                        .setScan(modeInput.getScan()));
         return scanService.save(scanObj);
     }
 }

@@ -18,6 +18,7 @@ import ru.vascan.api.dao.Voltamogramm;
 import ru.vascan.api.dao.Scan;
 import ru.vascan.api.dao.Measure;
 import ru.vascan.api.dao.MeasureMode;
+import ru.vascan.api.entities.MeasureModeInput;
 
 import java.util.List;
 
@@ -47,7 +48,8 @@ public class ApiApplication extends SpringBootServletInitializer {
                     Voltamogramm.class,
                     Scan.class,
                     Measure.class,
-                    MeasureMode.class
+                    MeasureMode.class,
+                    MeasureModeInput.class
                 )
                 .build()
                 .makeExecutableSchema();
