@@ -106,7 +106,14 @@ public class Mutation implements GraphQLRootResolver {
                 .setPressure(pressure)
                 .setMeasureMode(measureMode)
                 .setRegime(new MeasureMode()
-                        .setScan(modeInput.getScan()));
+                        .setScan(modeInput.getScan())
+                        .setNormalPulseLife(modeInput.getNormalPulseLife())
+                        .setNormalPulsePeriod(modeInput.getNormalPulsePeriod())
+                        .setDifferentialPulseAmplitude(modeInput.getDifferentialPulseAmplitude())
+                        .setDifferentialPulsePeriod(modeInput.getDifferentialPulsePeriod())
+                        .setDifferentialPulseWidth(modeInput.getDifferentialPulseWidth())
+                        .setSquareWaveAmplitude(modeInput.getSquareWaveAmplitude())
+                        .setSquareWaveTimePeriod(modeInput.getSquareWaveTimePeriod()));
         return scanService.save(scanObj);
     }
 }

@@ -1,6 +1,7 @@
 package ru.vascan.api.resolvers;
 
 import com.coxautodev.graphql.tools.GraphQLRootResolver;
+import io.reactivex.Observable;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import ru.vascan.api.dao.*;
@@ -39,10 +40,14 @@ public class Query implements GraphQLRootResolver {
     }
 
     public Voltamogramm voltamogramm(String voltamogrammId) {
-        List<Scan> scans = scanService.findByVoltamogramm(voltamogrammId);
-        Voltamogramm voltamogramm = voltamogrammService.findById(voltamogrammId);
-        voltamogramm.setScans(scans);
-        return voltamogramm;
+        return Observable.zip(
+            Observable.just(scanService.findByVoltamogramm(voltamogrammId)),
+            Observable.just(voltamogrammService.findById(voltamogrammId)),
+                (scans, voltamogramm) -> {
+                    voltamogramm.setScans(scans);
+                    return voltamogramm;
+                }
+        ).blockingSingle();
     }
 
     public List<Measure> measures(String scan) {
